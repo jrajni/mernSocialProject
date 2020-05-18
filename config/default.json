@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://arrjay:arrjay123@cluster0-sqgfc.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret": "Arrjay Token"
+}
