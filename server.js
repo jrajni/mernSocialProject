@@ -1,13 +1,13 @@
 const express = require('express')
 const app = express();
 const connectDb = require('./config/db')
-
+const cors = require('cors')
 // connect db
 connectDb()
 
 // init middleware
 app.use(express.json({ extended: false }))
-
+app.use(cors())
 app.get('/', (req, res) => {
     res.send("api running")
 })
