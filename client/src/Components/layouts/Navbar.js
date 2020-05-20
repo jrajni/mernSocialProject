@@ -1,18 +1,18 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { logout } from '../../actions/auth'
-const Navbar = (logout, { auth: isAuthenticated, loading }) => {
+const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
     const authLinks = (
         <ul>
             <li><Link to="/dashboard">Dashboard</Link></li>
 
-            <li><a href="#!" onClick={logout}>
+            <li><Link to="#!" onClick={logout}>
                 <i className="fas fa-sign-out-alt"></i>{' '}
                 <span className="hide-sm">Logout</span>
-            </a></li>
+            </Link></li>
         </ul >
     );
     const guestLinks = (

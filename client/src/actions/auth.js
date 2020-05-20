@@ -5,6 +5,7 @@ import {
 } from '../actions/types'
 import axios from 'axios'
 import setAuthToken from '../utils/setAuthToken'
+import { setAlert } from './alert';
 // Load USer
 export const loadUser = () => async dispatch => {
     if (localStorage.token) {
@@ -74,7 +75,7 @@ export const login = (email, password) => async dispatch => {
         const errors = error.response.data.errors
         if (errors) {
             errors.forEach(error => dispatch(
-                SET_ALERT(error.msg, 'danger')
+                setAlert(error.msg, 'danger')
             ))
         }
         dispatch({

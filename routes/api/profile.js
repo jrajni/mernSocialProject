@@ -12,9 +12,10 @@ router.get('/me', auth, async (req, res) => {
     try {
         const profile = await Profile.findOne({ user: req.user.id }).populate('user', ['name', 'avatar'])
         if (!profile) {
+            console.log("backend working")
             res.status(400).json({ msg: "There is no profile for this user" })
-            res.json(profile)
         }
+        res.json(profile)
     } catch (err) {
         console.error(err.message)
         res.status(500).send("SErver Error")
@@ -76,15 +77,15 @@ router.post('/', [
                 { $set: profileFields },
                 { new: true })
             res.json(profile)
+        } else {
+            // create
+            profile = new Profile(profileFields)
+            await profile.save()
+            res.json(profile)
         }
-        // create
-        profile = new Profile(profileFields)
-        await profile.save()
-        res.json(profile)
-
     } catch (err) {
         console.error(err.message)
-        res.send(500).send("server error")
+        res.status(500).send("server error")
     }
 })
 
